@@ -1189,7 +1189,7 @@
     }
 
     await this.start();
-    return true;
+    return this.isPlaying;
   },
 
   playChime() {},
@@ -2514,13 +2514,21 @@
         });
 
         // Audio Button
+        
+        // Audio Button
         const audioBtn = document.getElementById('btn-audio');
         const audioBars = document.getElementById('audio-bars');
-        audioBtn.addEventListener('click', () => {
-          const isPlaying = audio.toggle();
-          if (isPlaying) audioBars.classList.add('active');
-          else audioBars.classList.remove('active');
+
+        audioBtn.addEventListener('click', async () => {
+          const isPlaying = await audio.toggle();
+
+          if (isPlaying) {
+            audioBars.classList.add('active');
+          } else {
+            audioBars.classList.remove('active');
+          }
         });
+
 
         // Close Quote Modal
         document.getElementById('quote-close-btn').addEventListener('click', () => {
